@@ -36,9 +36,9 @@ export default function Page(props: PageProps<{ html: string }>) {
         <link rel="stylesheet" href="/output.css" />
       </head>
       <div className="cursor-default prose text-black md:prose-xl px-5 md:px-10 md:m-auto py-10">
-        <div className="flex flex-col md:flex-row items-center md:my-10  text-center md:text-left">
+        <div className="flex flex-col md:flex-row my-5 items-center md:my-10  text-center md:text-left">
           <p
-            className="me not-prose bg-black bg-clip-text"
+            className="me not-prose bg-black bg-clip-text "
             dangerouslySetInnerHTML={{ __html: props.data.html }}
           >
           </p>
