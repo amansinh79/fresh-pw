@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.me {
+  font-size: 3px;
+  line-height: 2px;
+  font-family: monospace;
+}
+
+.hover-underline {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;  
+  left: 0;
+  background-color: #fb8f2a;
+  transform: scaleX(1.02);
+  transform-origin: bottom;
+  transition: transform 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: -1;
+}
+
+.hover-underline:hover:after {
+  transform: scaleY(9) scaleX(1.02);
+  transform-origin: bottom;
+}
+
+@media (min-width: 768px) {
+  .hover-underline:hover:after {
+    transform: scaleY(12) scaleX(1.02);
+    transform-origin: bottom;
+  }
+  .me {
+    font-size: 5px;
+    line-height: 3px;
+    font-family: monospace;
+  }
+}
