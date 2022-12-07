@@ -1,4 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import Head from "../components/Head.tsx";
 
 export const handler: Handlers<{ html: string }> = {
   GET(_req, ctx) {
@@ -19,22 +20,7 @@ export const handler: Handlers<{ html: string }> = {
 export default function Page(props: PageProps<{ html: string }>) {
   return (
     <>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Amansinh Parmar</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
-          rel="stylesheet"
-        />
-
-        <link rel="stylesheet" href="/output.css" />
-      </head>
+      <Head />
       <div className="cursor-default prose text-black md:prose-xl px-5 md:px-10 md:m-auto py-10">
         <div className="flex flex-col md:flex-row my-5 items-center md:my-10  text-center md:text-left">
           <p
@@ -91,6 +77,16 @@ export default function Page(props: PageProps<{ html: string }>) {
               <strong>Thank you for being here!</strong>
             </em>
           </p>
+
+          <h3 id="blog">Blog</h3>
+          <ul>
+            <li>
+              <a href="/over-abstraction" class="cursor-pointer">
+                Over-abstraction is dangerous (asp dot net rant as a js rookie)
+              </a>
+            </li>
+          </ul>
+
           <p>
             GitHub{" "}
             <a
@@ -128,7 +124,7 @@ export default function Page(props: PageProps<{ html: string }>) {
             </a>
           </p>
           <p className="text-center pt-5 md:pt-10">
-            Build with{" "}
+            Built with{" "}
             <span>
               <a
                 className="hover-underline no-underline"
