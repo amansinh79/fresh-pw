@@ -78,15 +78,6 @@ export default function Page(props: PageProps<{ html: string }>) {
             </em>
           </p>
 
-          <h3 id="blog">Blog</h3>
-          <ul>
-            <li>
-              <a href="/over-abstraction" class="cursor-pointer">
-                Over-abstraction is dangerous (asp dot net rant as a js rookie)
-              </a>
-            </li>
-          </ul>
-
           <p>
             GitHub{" "}
             <a
