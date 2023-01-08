@@ -1,8 +1,22 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Head from "../components/Head.tsx";
+import NowPlaying from "../components/NowPlaying.tsx";
+import { getNowPlaying } from "../lib.ts";
 
 export const handler: Handlers<{ html: string }> = {
-  GET(_req, ctx) {
+  async GET(_req, ctx) {
+    let nowPlaying: any = (await getNowPlaying());
+    console.log(nowPlaying.status);
+    if (nowPlaying.status === 200) {
+      nowPlaying = await nowPlaying.json();
+      const { album, name, artists } = nowPlaying.item;
+      const image = album.images[0].url;
+      const artistNames = artists.map((t) => t.name).join(", ");
+      nowPlaying = { name, image, artistNames };
+    } else {
+      nowPlaying = null;
+    }
+
     const ua = _req.headers.get("user-agent");
     let html;
     if (ua?.includes("Instagram")) {
@@ -13,11 +27,15 @@ export const handler: Handlers<{ html: string }> = {
     if (!figlet) {
       return new Response("not found", { status: 404 });
     }
-    return ctx.render({ html });
+
+    const data = { html, nowPlaying };
+    return ctx.render(data);
   },
 };
 
-export default function Page(props: PageProps<{ html: string }>) {
+export default function Page(
+  props: PageProps<{ html: string; nowPlaying: any }>,
+) {
   return (
     <>
       <Head />
@@ -72,6 +90,8 @@ export default function Page(props: PageProps<{ html: string }>) {
             </a>{" "}
             alot. I'm still learning it, cause i can't quit.{" "}
           </p>
+
+          <NowPlaying nowPlaying={props.data.nowPlaying} />
           <p>
             <em>
               <strong>Thank you for being here!</strong>
